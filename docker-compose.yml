@@ -12,7 +12,7 @@ services:
       - MYSQL_USER=app
       - MYSQL_PASSWORD=pass
   node-app:
-    build: ./node-gate-simulator
+    build: ./gate-simulator
     image: node-app
     ports:
       - '9999:9999'
