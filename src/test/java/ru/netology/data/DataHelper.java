@@ -24,7 +24,7 @@ public class DataHelper {
 
     @Value
     public static class OwnerName {
-    String ownerCardName;
+        String ownerCardName;
     }
 
     public static OwnerName getValidOwnerCardName () {
