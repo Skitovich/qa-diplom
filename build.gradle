@@ -20,13 +20,18 @@ dependencies {
 
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
-//
+
 //    testCompileOnly 'org.projectlombok:lombok:1.18.20'
 //    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
 
     testImplementation 'mysql:mysql-connector-java:8.0.19'
     implementation 'mysql:mysql-connector-java:8.0.15'
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
+
+
+
+    compile 'com.github.javafaker:javafaker:1.0.1'
+
 }
 
 test {
