@@ -2,24 +2,38 @@ package ru.netology.page;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import ru.netology.data.DataHelper;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class BuyByCreditPage {
 
-    private final SelenideElement monthCardExpired = $(By.xpath("/span[text()='Номер карты']"));
-    private final SelenideElement yearCardExpired = $(By.xpath("span[text()='Год']"));
-    private final SelenideElement ownerCard = $(By.xpath("span[text()='Владелец']"));
-    private final SelenideElement cvcCvvCard = $(By.xpath("span[text()='CVC/CVV']"));
-    private final SelenideElement cardNumber = $(By.xpath("span[text()='Номер карты']"));
-    private final SelenideElement buttonBuy = $(By.xpath("span[text()='Купить']"));
-    private final SelenideElement buttonBuyByCredit = $(By.xpath("span[text()='Купить в кредит']"));
-    private final SelenideElement buttonContinue = $(By.xpath("span[text()='Продолжить']"));
-    private final SelenideElement checkBuyByCredit = $(By.xpath("h3[text()='Кредит по данным карты']"));
-
+    private final SelenideElement monthCardExpired = $(By.cssSelector("[placeholder='08']"));
+    private final SelenideElement yearCardExpired = $(By.cssSelector("[placeholder='22']"));
+    private final SelenideElement ownerCard = $(By.cssSelector("fieldset > div:nth-of-type(3) > span:nth-of-type(1) > span:nth-of-type(1) input:nth-of-type(1)"));
+    private final SelenideElement cvcCvvCard = $(By.cssSelector("[placeholder='999']"));
+    private final SelenideElement cardNumber = $(By.cssSelector("[placeholder='0000 0000 0000 0000']"));
+    private final SelenideElement buttonContinue = $(By.cssSelector("div:nth-of-type(4) .button__text"));
+    private final SelenideElement checkBuyByCredit = $(byText("Кредит по данным карты"));
+    private final SelenideElement popupSuccessfully = $(By.xpath("//div[text()='Операция одобрена Банком.']"));
+    private final SelenideElement popupErrorCanceledByBank = $(By.xpath("//div[text()='Ошибка! Банк отказал в проведении операции.']"));
 
 
     public BuyByCreditPage() {
         checkBuyByCredit.shouldBe(Condition.visible);
+    }
+
+    public void successfullyBuyByCredit () {
+        cardNumber.setValue(DataHelper.getCardNumber("4441"));
+        yearCardExpired.setValue(DataHelper.generateYearCardExpired());
+        monthCardExpired.setValue(DataHelper.generateMonthCardExpired());
+        ownerCard.setValue(DataHelper.generateOwnerName());
+        cvcCvvCard.setValue(DataHelper.generateCVC());
+        buttonContinue.click();
+        popupSuccessfully.shouldBe(Condition.visible, Duration.ofSeconds(10));
     }
 
 

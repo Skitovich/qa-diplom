@@ -1,76 +1,42 @@
 package ru.netology.data;
 
 import com.github.javafaker.Faker;
-import lombok.Value;
 
-import java.util.Locale;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 
 public class DataHelper {
     private DataHelper() {
     }
 
-    Faker faker = new Faker();
-
-    @Value
-    public static class Cards {
-        String card;
-    }
-    public static Cards getVerificationCard () {
-        return new Cards("4444 4444 4444 4441");
-    }
-    public static Cards getInvalidCard () {
-        return new Cards("4444 4444 4444 4442");
+    public static String getCardNumber(String enterLastForDigitsOfCard) {
+        if (enterLastForDigitsOfCard.equals("4441"))
+        return "4444 4444 4444 4441";
+        if (enterLastForDigitsOfCard.equals("4442"))
+        return "4444 4444 4444 4442";
+        else return "0000 0000 0000 0000";
     }
 
-    @Value
-    public static class OwnerName {
-        String ownerCardName;
+    public static String generateMonthCardExpired() {
+        ArrayList<String> months = new ArrayList<>(Arrays.asList("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"));
+        Collections.shuffle(months);
+        return months.get(1);
     }
-
-    public static OwnerName getValidOwnerCardName () {
-        return new OwnerName("Ruslan");
+    public static String generateYearCardExpired() {
+        ArrayList<String> years = new ArrayList<>(Arrays.asList("20", "21", "22"));
+        Collections.shuffle(years);
+        return years.get(1);
     }
-    public static OwnerName getInvalidOwnerCardName () {
-        return new OwnerName("%?*(12123");
+    public static String generateOwnerName() {
+        Faker faker = new Faker();
+        return faker.name().firstName();
     }
-
-    @Value
-    public static class MonthCardExpiration {
-        String month;
+    public static String generateCVC () {
+        String cvc = "999";
+        return cvc;
     }
-
-    public static MonthCardExpiration getValidMonth () {
-        return new MonthCardExpiration("08");
-    }
-    public static MonthCardExpiration getInvalidMonth () {
-        return new MonthCardExpiration("RA");
-    }
-
-
-    @Value
-    public static class YearCardExpiration {
-        String year;
-    }
-
-    public static YearCardExpiration getValidYearCardExpiration () {
-        return new YearCardExpiration("22");
-    }
-    public static YearCardExpiration getInvalidYearCardExpiration () {
-        return new YearCardExpiration("RA");
-    }
-
-    @Value
-    public static class CvcCvvCard {
-        String cvc;
-    }
-
-    public static YearCardExpiration getValidYearCvcCvvCard () {
-        return new YearCardExpiration("999");
-    }
-    public static YearCardExpiration getInvalidYearCvcCvvCard () {
-        return new YearCardExpiration("RRA");
-    }
-
 
 
 }
