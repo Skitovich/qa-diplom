@@ -11,6 +11,7 @@ public class DataHelper {
     private DataHelper() {
     }
 
+    @org.jetbrains.annotations.NotNull
     public static String getCardNumber(String enterLastForDigitsOfCard) {
         if (enterLastForDigitsOfCard.equals("4441"))
         return "4444 4444 4444 4441";
@@ -20,12 +21,13 @@ public class DataHelper {
     }
 
     public static String generateMonthCardExpired() {
-        ArrayList<String> months = new ArrayList<>(Arrays.asList("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"));
+        ArrayList<String> months = new ArrayList<>(Arrays.
+                asList("01","02","03","04","05","06","07","08","09","10","11","12"));
         Collections.shuffle(months);
         return months.get(1);
     }
     public static String generateYearCardExpired() {
-        ArrayList<String> years = new ArrayList<>(Arrays.asList("20", "21", "22"));
+        ArrayList<String> years = new ArrayList<>(Arrays.asList("21", "22","23"));
         Collections.shuffle(years);
         return years.get(1);
     }
@@ -33,10 +35,10 @@ public class DataHelper {
         Faker faker = new Faker();
         return faker.name().firstName();
     }
-    public static String generateCVC () {
-        String cvc = "999";
-        return cvc;
+    public static String generateCVC (String enterCvc) {
+        return enterCvc;
     }
+
 
 
 }
