@@ -9,9 +9,11 @@ import org.junit.jupiter.api.Test;
 import ru.netology.page.GeneralPage;
 import ru.netology.sql.SqlMethods;
 
+import java.sql.SQLException;
 import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
+import static ru.netology.sql.SqlMethods.getResultSetRowCount;
 
 public class MainPageTest {
 
@@ -27,12 +29,15 @@ public class MainPageTest {
     }
 
     @Test
-    void shouldBuyByCredit() {
+    void shouldBuyByCredit() throws SQLException {
+        int numRows = getResultSetRowCount();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.successfullyBuyByCredit();
         String status = Objects.requireNonNull(SqlMethods.getStatus()).getStatus();
         Assertions.assertEquals("APPROVED", status);
+        Assertions.assertEquals(numRows + 1,getResultSetRowCount());
+
     }
 
     @Test

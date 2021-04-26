@@ -5,8 +5,7 @@ import lombok.val;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class SqlMethods {
     public SqlMethods() {
@@ -31,5 +30,22 @@ public class SqlMethods {
         return null;
     }
 
+
+    public static int getResultSetRowCount () {
+
+        val getRows = "select * from credit_request_entity";
+     try (
+                val conn = DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/app", "app", "pass")
+        ) {
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(getRows);
+         rs.last();
+         return  rs.getRow();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return 0;
+     }
 
 }

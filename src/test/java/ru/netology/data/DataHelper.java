@@ -22,12 +22,18 @@ public class DataHelper {
 
     public static String generateMonthCardExpired() {
         ArrayList<String> months = new ArrayList<>(Arrays.
-                asList("01","02","03","04","05","06","07","08","09","10","11","12"));
+                asList("04","05","06","07","08","09","10","11","12"));
         Collections.shuffle(months);
         return months.get(1);
     }
     public static String generateYearCardExpired() {
         ArrayList<String> years = new ArrayList<>(Arrays.asList("21", "22","23"));
+        Collections.shuffle(years);
+        return years.get(1);
+    }
+
+    public static String generateNotValidYearCardExpired() {
+        ArrayList<String> years = new ArrayList<>(Arrays.asList("19", "20","RU","@#"));
         Collections.shuffle(years);
         return years.get(1);
     }
@@ -38,7 +44,6 @@ public class DataHelper {
     public static String generateCVC (String enterCvc) {
         return enterCvc;
     }
-
 
 
 }

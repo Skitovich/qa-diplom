@@ -13,11 +13,11 @@ public class BuyByCardPage {
     private final SelenideElement cvcCvvCard = $(By.xpath("span[text()='CVC/CVV']"));
     private final SelenideElement cardNumber = $(By.xpath("span[text()='Номер карты']"));
     private final SelenideElement buttonContinue = $(By.xpath("span[text()='Продолжить']"));
-    private final SelenideElement checkBuyByCard = $(By.xpath("h3[text()='Оплата по карте']"));
     private final SelenideElement popupSuccessfully = $(By.xpath("//div[text()='Операция одобрена Банком.']"));
     private final SelenideElement popupErrorCanceledByBank = $(By.xpath("//div[text()='Ошибка! Банк отказал в проведении операции.']"));
 
     public BuyByCardPage() {
+        SelenideElement checkBuyByCard = $(By.xpath("h3[text()='Оплата по карте']"));
         checkBuyByCard.shouldBe(Condition.visible);
     }
 
