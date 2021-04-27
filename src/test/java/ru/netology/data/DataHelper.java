@@ -17,7 +17,7 @@ public class DataHelper {
         return "4444 4444 4444 4441";
         if (enterLastForDigitsOfCard.equals("4442"))
         return "4444 4444 4444 4442";
-        else return "0000 0000 0000 0000";
+        else return "0000 0000 0000 000";
     }
 
     public static String generateMonthCardExpired() {
@@ -26,8 +26,16 @@ public class DataHelper {
         Collections.shuffle(months);
         return months.get(1);
     }
+
+    public static String generateInvalidMonthCardExpired() {
+        ArrayList<String> months = new ArrayList<>(Arrays.
+                asList("RA","00","13"));
+        Collections.shuffle(months);
+        return months.get(1);
+    }
+
     public static String generateYearCardExpired() {
-        ArrayList<String> years = new ArrayList<>(Arrays.asList("21", "22","23"));
+        ArrayList<String> years = new ArrayList<>(Arrays.asList("21", "22", "23"));
         Collections.shuffle(years);
         return years.get(1);
     }

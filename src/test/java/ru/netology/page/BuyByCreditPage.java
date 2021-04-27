@@ -19,7 +19,8 @@ public class BuyByCreditPage {
     private final SelenideElement buttonContinue = $(By.cssSelector("div:nth-of-type(4) .button__text"));
     private final SelenideElement popupSuccessfully = $(By.xpath("//div[text()='Операция одобрена Банком.']"));
     private final SelenideElement popupErrorCanceledByBank = $(By.xpath("//div[text()='Ошибка! Банк отказал в проведении операции.']"));
-
+    private final SelenideElement errorFiledNumberOfCard = $(By.xpath("//span[text()='Неверный формат']"));
+    private final SelenideElement errorFiledMonth = $(By.xpath("//span[text()='Неверно указан срок действия карты']"));
 
     public BuyByCreditPage() {
         SelenideElement checkBuyByCredit = $(byText("Кредит по данным карты"));
@@ -44,6 +45,26 @@ public class BuyByCreditPage {
         cvcCvvCard.setValue(DataHelper.generateCVC("999"));
         buttonContinue.click();
         popupErrorCanceledByBank.shouldBe(Condition.visible, Duration.ofSeconds(10));
+    }
+
+    public void errorByFieldCardNumber () {
+        cardNumber.setValue(DataHelper.getCardNumber("1111"));
+        yearCardExpired.setValue(DataHelper.generateYearCardExpired());
+        monthCardExpired.setValue(DataHelper.generateMonthCardExpired());
+        ownerCard.setValue(DataHelper.generateOwnerName());
+        cvcCvvCard.setValue(DataHelper.generateCVC("999"));
+        buttonContinue.click();
+        errorFiledNumberOfCard.shouldBe(Condition.visible);
+    }
+
+    public void errorByFieldMonth () {
+        cardNumber.setValue(DataHelper.getCardNumber("4441"));
+        yearCardExpired.setValue(DataHelper.generateYearCardExpired());
+        monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
+        ownerCard.setValue(DataHelper.generateOwnerName());
+        cvcCvvCard.setValue(DataHelper.generateCVC("999"));
+        buttonContinue.click();
+        errorFiledMonth.shouldBe(Condition.visible);
     }
 
 

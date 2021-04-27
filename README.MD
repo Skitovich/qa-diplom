@@ -9,9 +9,9 @@
 
 После того как контейнеры запустятся, в соседней вкладке терминала запустить приложение командой:
 
-вариант 1 (с подключением к MySQL)java -Dspring.datasource.url=jdbc:mysql://localhost:3306/app -Dspring.datasource.username=app -Dspring.datasource.password=pass -jar ./artifacts/aqa-shop.jar
+вариант 1 (с подключением к MySQL) java -jar aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/app -P:jdbc.user=app -P:jdbc.password=pass
 
-вариант 2 (с подключением к PostgreSQL)java -Dspring.datasource.url=jdbc:postgresql://localhost:5432/postgres -Dspring.datasource.username=postgres -Dspring.datasource.password=mysecretpassword -jar ./artifacts/aqa-shop.jar
+вариант 2 (с подключением к PostgreSQL) java -jar aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/app -P:jdbc.user=app -P:jdbc.password=pass
 
 После того как приложение запустится, в следующей соседней вкладке терминала запустить тесты командой:
 

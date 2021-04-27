@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import ru.netology.page.GeneralPage;
 import ru.netology.sql.SqlMethods;
 
-import java.sql.SQLException;
 import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -29,7 +28,7 @@ public class MainPageTest {
     }
 
     @Test
-    void shouldBuyByCredit() throws SQLException {
+    void shouldBuyByCredit()  {
         int numRows = getResultSetRowCount();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
@@ -37,16 +36,29 @@ public class MainPageTest {
         String status = Objects.requireNonNull(SqlMethods.getStatus()).getStatus();
         Assertions.assertEquals("APPROVED", status);
         Assertions.assertEquals(numRows + 1,getResultSetRowCount());
-
     }
 
     @Test
     void shouldCanceledBuyByCredit() {
+        int numRows = getResultSetRowCount();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.canceledBuyByCredit();
         String status = Objects.requireNonNull(SqlMethods.getStatus()).getStatus();
         Assertions.assertEquals("DECLINED", status);
+        Assertions.assertEquals(numRows + 1,getResultSetRowCount());
+    }
+    @Test
+    void shouldErrorByFieldNumberOfCard () {
+        val generalPage = new GeneralPage();
+        val buyByCreditPage = generalPage.buyByCredit();
+        buyByCreditPage.errorByFieldCardNumber();
+    }
 
+    @Test
+    void shouldErrorByFieldMonth() {
+        val generalPage = new GeneralPage();
+        val buyByCreditPage = generalPage.buyByCredit();
+        buyByCreditPage.errorByFieldMonth();
     }
 }
