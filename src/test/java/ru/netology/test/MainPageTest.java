@@ -61,4 +61,18 @@ public class MainPageTest {
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.errorByFieldMonth();
     }
+
+    @Test
+    void shouldErrorByFieldYear() {
+        val generalPage = new GeneralPage();
+        val buyByCreditPage = generalPage.buyByCredit();
+        buyByCreditPage.errorByFieldYear();
+    }
+
+    @Test
+    void shouldErrorByFieldOwner() {
+        val generalPage = new GeneralPage();
+        val buyByCreditPage = generalPage.buyByCredit();
+        buyByCreditPage.errorByFieldOwner();
+    }
 }

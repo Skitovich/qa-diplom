@@ -48,7 +48,7 @@ public class BuyByCreditPage {
         ownerCard.setValue(DataHelper.generateOwnerName());
         cvcCvvCard.setValue(DataHelper.generateCVC("999"));
         buttonContinue.click();
-        popupErrorCanceledByBank.shouldBe(Condition.visible, Duration.ofSeconds(10));
+        popupErrorCanceledByBank.shouldBe(Condition.visible, Duration.ofSeconds(20));
     }
 
     public void errorByFieldCardNumber () {
@@ -79,6 +79,15 @@ public class BuyByCreditPage {
         cvcCvvCard.setValue(DataHelper.generateCVC("999"));
         buttonContinue.click();
         errorFieldYear.shouldBe(Condition.visible);
+    }
+
+    public void errorByFieldOwner () {
+        cardNumber.setValue(DataHelper.getCardNumber("4441"));
+        yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
+        monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
+        cvcCvvCard.setValue(DataHelper.generateCVC("999"));
+        buttonContinue.click();
+        errorFieldOwner.shouldBe(Condition.visible);
     }
 
 

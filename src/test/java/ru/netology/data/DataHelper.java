@@ -41,7 +41,7 @@ public class DataHelper {
     }
 
     public static String generateNotValidYearCardExpired() {
-        ArrayList<String> years = new ArrayList<>(Arrays.asList("19", "20","RU","@#"));
+        ArrayList<String> years = new ArrayList<>(Arrays.asList("19", "20","RU","@#","99"));
         Collections.shuffle(years);
         return years.get(1);
     }
