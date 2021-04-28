@@ -74,5 +74,7 @@ public class MainPageTest {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.errorByFieldOwner();
+//        buyByCreditPage.fillCreditForm(null, DataHelper.generateCVC(), 21, )
+//        Assert.(buyByCreditPage.isAlertMessageByFIeldName("Номер карты"), true)
     }
 }
