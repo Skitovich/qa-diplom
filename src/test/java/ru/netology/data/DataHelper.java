@@ -49,6 +49,7 @@ public class DataHelper {
         Faker faker = new Faker();
         return faker.name().firstName();
     }
+
     public static String generateCVC (String enterCvc) {
         return enterCvc;
     }

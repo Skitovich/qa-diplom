@@ -1,6 +1,8 @@
 package ru.netology.page;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.TimeoutException;
 import org.openqa.selenium.By;
 import ru.netology.data.DataHelper;
 
@@ -25,13 +27,12 @@ public class BuyByCreditPage {
     private final SelenideElement errorFieldOwner = $(By.xpath("//span[text()='Поле обязательно для заполнения']"));
 
 
-
     public BuyByCreditPage() {
         SelenideElement checkBuyByCredit = $(byText("Кредит по данным карты"));
         checkBuyByCredit.shouldBe(Condition.visible);
     }
 
-    public void successfullyBuyByCredit () {
+    public void successfullyBuyByCredit() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateMonthCardExpired());
@@ -41,7 +42,7 @@ public class BuyByCreditPage {
         popupSuccessfully.shouldBe(Condition.visible, Duration.ofSeconds(10));
     }
 
-    public void canceledBuyByCredit () {
+    public void canceledBuyByCredit() {
         cardNumber.setValue(DataHelper.getCardNumber("4442"));
         yearCardExpired.setValue(DataHelper.generateYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateMonthCardExpired());
@@ -51,7 +52,7 @@ public class BuyByCreditPage {
         popupErrorCanceledByBank.shouldBe(Condition.visible, Duration.ofSeconds(20));
     }
 
-    public void errorByFieldCardNumber () {
+    public void errorByFieldCardNumber() {
         cardNumber.setValue(DataHelper.getCardNumber("1111"));
         yearCardExpired.setValue(DataHelper.generateYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateMonthCardExpired());
@@ -61,7 +62,7 @@ public class BuyByCreditPage {
         errorFieldNumberOfCard.shouldBe(Condition.visible);
     }
 
-    public void errorByFieldMonth () {
+    public void errorByFieldMonth() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
@@ -71,7 +72,7 @@ public class BuyByCreditPage {
         errorFieldMonth.shouldBe(Condition.visible);
     }
 
-    public void errorByFieldYear () {
+    public void errorByFieldYear() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
@@ -81,7 +82,7 @@ public class BuyByCreditPage {
         errorFieldYear.shouldBe(Condition.visible);
     }
 
-    public void errorByFieldOwner () {
+    public void errorByFieldOwner() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
@@ -90,5 +91,28 @@ public class BuyByCreditPage {
         errorFieldOwner.shouldBe(Condition.visible);
     }
 
+//    public void fillCardNum(String n) {
+//        $(By.xpath("//span[text()= \"Номер Карты\"]")).setValue(cardNum))
+//    }
 
+
+    public void fillForm(String cardNum, String errorByMonth, String errorByYear, String errorByOwner,
+                         String errorByCvcCvv) {
+
+        $(By.xpath("//span[text()= " + errorByMonth + "")).shouldBe(Condition.visible);
+        $(By.xpath("//span[text()= " + errorByYear + "")).shouldBe(Condition.visible);
+        $(By.xpath("//span[text()= " + errorByOwner + "")).shouldBe(Condition.visible);
+        $(By.xpath("//span[text()= " + errorByCvcCvv + "")).setValue(DataHelper.generateCVC("999"));
+    }
+
+    public boolean isAlert(String fieldName, String errorText) {
+        try {
+            $(By.xpath("//span[text() =  \""+ fieldName +"\"//following::span[text() = \"" + errorText +"\"]")).
+                    shouldBe(Condition.visible);
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+
+    }
 }
