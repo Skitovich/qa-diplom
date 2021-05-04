@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.netology.page.BuyByCreditPage;
 import ru.netology.page.GeneralPage;
 import ru.netology.sql.SqlMethods;
 
@@ -32,7 +33,7 @@ public class MainPageTest {
         int numRows = getResultSetRowCount();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.successfullyBuyByCredit();
+        buyByCreditPage.fillFormSuccessfullyBuyByCredit();
         String status = Objects.requireNonNull(SqlMethods.getStatus()).getStatus();
         Assertions.assertEquals("APPROVED", status);
         Assertions.assertEquals(numRows + 1,getResultSetRowCount());
@@ -43,7 +44,7 @@ public class MainPageTest {
         int numRows = getResultSetRowCount();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.canceledBuyByCredit();
+        buyByCreditPage.fillFormCanceledBuyByCredit();
         String status = Objects.requireNonNull(SqlMethods.getStatus()).getStatus();
         Assertions.assertEquals("DECLINED", status);
         Assertions.assertEquals(numRows + 1,getResultSetRowCount());
@@ -52,28 +53,29 @@ public class MainPageTest {
     void shouldErrorByFieldNumberOfCard () {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.errorByFieldCardNumber();
+        buyByCreditPage.fillFormErrorByFieldCardNumber();
     }
 
     @Test
     void shouldErrorByFieldMonth() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.errorByFieldMonth();
+        buyByCreditPage.fillFormErrorByFieldMonth();
     }
 
     @Test
     void shouldErrorByFieldYear() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.errorByFieldYear();
+        buyByCreditPage.fillFormErrorByFieldYear();
+        Assertions.assertTrue(BuyByCreditPage.isAlert("Год", "Неверный формат"));
     }
 
     @Test
     void shouldErrorByFieldOwner() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.errorByFieldOwner();
+        buyByCreditPage.fillFormErrorByFieldOwner();
 //        buyByCreditPage.fillForm(generateInvalidMonthCardExpired());
 //        buyByCreditPage.fillCreditForm(null, DataHelper.generateCVC(), 21, )
 //        Assert.(buyByCreditPage.isAlertMessageByFIeldName("Номер карты"), true)
