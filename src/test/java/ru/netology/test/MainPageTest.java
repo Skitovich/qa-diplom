@@ -13,6 +13,7 @@ import ru.netology.sql.SqlMethods;
 import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ru.netology.sql.SqlMethods.getResultSetRowCount;
 
 public class MainPageTest {
@@ -29,14 +30,14 @@ public class MainPageTest {
     }
 
     @Test
-    void shouldBuyByCredit()  {
+    void shouldBuyByCredit() {
         int numRows = getResultSetRowCount();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.fillFormSuccessfullyBuyByCredit();
         String status = Objects.requireNonNull(SqlMethods.getStatus()).getStatus();
         Assertions.assertEquals("APPROVED", status);
-        Assertions.assertEquals(numRows + 1,getResultSetRowCount());
+        Assertions.assertEquals(numRows + 1, getResultSetRowCount());
     }
 
     @Test
@@ -47,36 +48,46 @@ public class MainPageTest {
         buyByCreditPage.fillFormCanceledBuyByCredit();
         String status = Objects.requireNonNull(SqlMethods.getStatus()).getStatus();
         Assertions.assertEquals("DECLINED", status);
-        Assertions.assertEquals(numRows + 1,getResultSetRowCount());
+        Assertions.assertEquals(numRows + 1, getResultSetRowCount());
     }
+
     @Test
-    void shouldErrorByFieldNumberOfCard () {
+    void shouldErrorByFieldNumberOfCard() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.fillFormErrorByFieldCardNumber();
     }
 
     @Test
-    void shouldErrorByFieldMonth() {
+    void shouldErrorByEmptyFieldNumberOfCard() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.fillFormErrorValueByFieldMonth();
+        buyByCreditPage.fillFormErrorByEmptyFieldCardNumber();
+        assertTrue(BuyByCreditPage.isAlert("Номер карты", "Неверный формат"));
     }
+
 
     @Test
     void shouldErrorByFieldOwner() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.fillFormErrorByFieldOwner();
+        buyByCreditPage.fillFormErrorByEmptyFieldOwner();
     }
 
-// Тест на ошибку под полем, по не заполненному полю "Год". Ошибка "Неверный формат"
+    // Тест на ошибку под полем, по не заполненному полю "Год". Ошибка "Неверный формат"
     @Test
     void shouldErrorByEmptyFieldYear() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.fillFormEmptyFieldYear();
-        Assertions.assertTrue(BuyByCreditPage.isAlert("Год", "Неверный формат"));
+        assertTrue(BuyByCreditPage.isAlert("Год", "Неверный формат"));
+    }
+
+    @Test
+    void shouldErrorByIncorrectValueFieldYear() {
+        val generalPage = new GeneralPage();
+        val buyByCreditPage = generalPage.buyByCredit();
+        buyByCreditPage.fillFormErrorValueByFieldYear();
     }
 
     @Test
@@ -84,6 +95,15 @@ public class MainPageTest {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.fillFormByEmptyFieldMonth();
-        Assertions.assertTrue(BuyByCreditPage.isAlert("Месяц", "Неверный формат"));
+        assertTrue(BuyByCreditPage.isAlert("Месяц", "Неверный формат"));
+
+    }
+
+
+    @Test
+    void shouldErrorByFieldMonth() {
+        val generalPage = new GeneralPage();
+        val buyByCreditPage = generalPage.buyByCredit();
+        buyByCreditPage.fillFormErrorValueByFieldMonth();
     }
 }
