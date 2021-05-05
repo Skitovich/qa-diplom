@@ -60,15 +60,7 @@ public class MainPageTest {
     void shouldErrorByFieldMonth() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.fillFormErrorByFieldMonth();
-    }
-
-    @Test
-    void shouldErrorByFieldYear() {
-        val generalPage = new GeneralPage();
-        val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.fillFormErrorByFieldYear();
-        Assertions.assertTrue(BuyByCreditPage.isAlert("Год", "Неверный формат"));
+        buyByCreditPage.fillFormErrorValueByFieldMonth();
     }
 
     @Test
@@ -76,8 +68,22 @@ public class MainPageTest {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.fillFormErrorByFieldOwner();
-//        buyByCreditPage.fillForm(generateInvalidMonthCardExpired());
-//        buyByCreditPage.fillCreditForm(null, DataHelper.generateCVC(), 21, )
-//        Assert.(buyByCreditPage.isAlertMessageByFIeldName("Номер карты"), true)
+    }
+
+// Тест на ошибку под полем, по не заполненному полю "Год". Ошибка "Неверный формат"
+    @Test
+    void shouldErrorByEmptyFieldYear() {
+        val generalPage = new GeneralPage();
+        val buyByCreditPage = generalPage.buyByCredit();
+        buyByCreditPage.fillFormEmptyFieldYear();
+        Assertions.assertTrue(BuyByCreditPage.isAlert("Год", "Неверный формат"));
+    }
+
+    @Test
+    void shouldErrorByEmptyFieldMonth() {
+        val generalPage = new GeneralPage();
+        val buyByCreditPage = generalPage.buyByCredit();
+        buyByCreditPage.fillFormByEmptyFieldMonth();
+        Assertions.assertTrue(BuyByCreditPage.isAlert("Месяц", "Неверный формат"));
     }
 }

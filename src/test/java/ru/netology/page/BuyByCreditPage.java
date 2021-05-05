@@ -36,7 +36,7 @@ public class BuyByCreditPage {
     public static boolean isAlert(String fieldName, String errorText) {
         try {
             $(By.xpath("//span[text() = '" + fieldName + "']//following::span[text() = '" + errorText + "']"))
-                    .shouldBe(Condition.visible,Duration.ofSeconds(10));
+                    .shouldBe(Condition.visible, Duration.ofSeconds(10));
             return true;
         } catch (TimeoutException e) {
             return false;
@@ -44,65 +44,79 @@ public class BuyByCreditPage {
     }
 
 
-        public void fillFormSuccessfullyBuyByCredit () {
-            cardNumber.setValue(DataHelper.getCardNumber("4441"));
-            yearCardExpired.setValue(DataHelper.generateYearCardExpired());
-            monthCardExpired.setValue(DataHelper.generateMonthCardExpired());
-            ownerCard.setValue(DataHelper.generateOwnerName());
-            cvcCvvCard.setValue(DataHelper.generateCVC("999"));
-            buttonContinue.click();
-            popupSuccessfully.shouldBe(Condition.visible, Duration.ofSeconds(10));
-        }
+    public void fillFormSuccessfullyBuyByCredit() {
+        cardNumber.setValue(DataHelper.getCardNumber("4441"));
+        yearCardExpired.setValue(DataHelper.generateYearCardExpired());
+        monthCardExpired.setValue(DataHelper.generateMonthCardExpired());
+        ownerCard.setValue(DataHelper.generateOwnerName());
+        cvcCvvCard.setValue(DataHelper.generateCVC("999"));
+        buttonContinue.click();
+        popupSuccessfully.shouldBe(Condition.visible, Duration.ofSeconds(10));
+    }
 
-        public void fillFormCanceledBuyByCredit () {
-            cardNumber.setValue(DataHelper.getCardNumber("4442"));
-            yearCardExpired.setValue(DataHelper.generateYearCardExpired());
-            monthCardExpired.setValue(DataHelper.generateMonthCardExpired());
-            ownerCard.setValue(DataHelper.generateOwnerName());
-            cvcCvvCard.setValue(DataHelper.generateCVC("999"));
-            buttonContinue.click();
-            popupErrorCanceledByBank.shouldBe(Condition.visible, Duration.ofSeconds(20));
-        }
+    public void fillFormCanceledBuyByCredit() {
+        cardNumber.setValue(DataHelper.getCardNumber("4442"));
+        yearCardExpired.setValue(DataHelper.generateYearCardExpired());
+        monthCardExpired.setValue(DataHelper.generateMonthCardExpired());
+        ownerCard.setValue(DataHelper.generateOwnerName());
+        cvcCvvCard.setValue(DataHelper.generateCVC("999"));
+        buttonContinue.click();
+        popupErrorCanceledByBank.shouldBe(Condition.visible, Duration.ofSeconds(20));
+    }
 
-        public void fillFormErrorByFieldCardNumber () {
-            cardNumber.setValue(DataHelper.getCardNumber("1111"));
-            yearCardExpired.setValue(DataHelper.generateYearCardExpired());
-            monthCardExpired.setValue(DataHelper.generateMonthCardExpired());
-            ownerCard.setValue(DataHelper.generateOwnerName());
-            cvcCvvCard.setValue(DataHelper.generateCVC("999"));
-            buttonContinue.click();
-            errorFieldNumberOfCard.shouldBe(Condition.visible);
-        }
+    public void fillFormErrorByFieldCardNumber() {
+        cardNumber.setValue(DataHelper.getCardNumber("1111"));
+        yearCardExpired.setValue(DataHelper.generateYearCardExpired());
+        monthCardExpired.setValue(DataHelper.generateMonthCardExpired());
+        ownerCard.setValue(DataHelper.generateOwnerName());
+        cvcCvvCard.setValue(DataHelper.generateCVC("999"));
+        buttonContinue.click();
+        errorFieldNumberOfCard.shouldBe(Condition.visible);
+    }
 
-        public void fillFormErrorByFieldMonth () {
-            cardNumber.setValue(DataHelper.getCardNumber("4441"));
-            yearCardExpired.setValue(DataHelper.generateYearCardExpired());
-            monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
-            ownerCard.setValue(DataHelper.generateOwnerName());
-            cvcCvvCard.setValue(DataHelper.generateCVC("999"));
-            buttonContinue.click();
-            errorFieldMonth.shouldBe(Condition.visible);
-        }
+    public void fillFormByEmptyFieldMonth() {
+        cardNumber.setValue(DataHelper.getCardNumber("4441"));
+        yearCardExpired.setValue(DataHelper.generateYearCardExpired());
+        ownerCard.setValue(DataHelper.generateOwnerName());
+        cvcCvvCard.setValue(DataHelper.generateCVC("999"));
+        buttonContinue.click();
+    }
+    public void fillFormErrorValueByFieldMonth() {
+        cardNumber.setValue(DataHelper.getCardNumber("4441"));
+        yearCardExpired.setValue(DataHelper.generateYearCardExpired());
+        monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
+        ownerCard.setValue(DataHelper.generateOwnerName());
+        cvcCvvCard.setValue(DataHelper.generateCVC("999"));
+        buttonContinue.click();
+        errorFieldMonth.shouldBe(Condition.visible);
+    }
 
-        public void fillFormErrorByFieldYear () {
-            cardNumber.setValue(DataHelper.getCardNumber("4441"));
-//            yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
-            monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
-            ownerCard.setValue(DataHelper.generateOwnerName());
-            cvcCvvCard.setValue(DataHelper.generateCVC("999"));
-            buttonContinue.click();
+    public void fillFormEmptyFieldYear() {
+        cardNumber.setValue(DataHelper.getCardNumber("4441"));
+        monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
+        ownerCard.setValue(DataHelper.generateOwnerName());
+        cvcCvvCard.setValue(DataHelper.generateCVC("999"));
+        buttonContinue.click();
+    }
 
-//            errorFieldYear.shouldBe(Condition.visible);
-        }
+    public void fillFormErrorValueByFieldYear() {
+        cardNumber.setValue(DataHelper.getCardNumber("4441"));
+        yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
+        monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
+        ownerCard.setValue(DataHelper.generateOwnerName());
+        cvcCvvCard.setValue(DataHelper.generateCVC("999"));
+        buttonContinue.click();
+        errorFieldYear.shouldBe(Condition.visible);
+    }
 
-        public void fillFormErrorByFieldOwner () {
-            cardNumber.setValue(DataHelper.getCardNumber("4441"));
-            yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
-            monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
-            cvcCvvCard.setValue(DataHelper.generateCVC("999"));
-            buttonContinue.click();
-            errorFieldOwner.shouldBe(Condition.visible);
-        }
+    public void fillFormErrorByFieldOwner() {
+        cardNumber.setValue(DataHelper.getCardNumber("4441"));
+        yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
+        monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
+        cvcCvvCard.setValue(DataHelper.generateCVC("999"));
+        buttonContinue.click();
+        errorFieldOwner.shouldBe(Condition.visible);
+    }
 
 //    public void fillCardNum(String n) {
 //        $(By.xpath("//span[text()= \"Номер Карты\"]")).setValue(cardNum))
@@ -117,7 +131,6 @@ public class BuyByCreditPage {
 //        $(By.xpath("//span[text()= " + errorByOwner + "")).shouldBe(Condition.visible);
 //        $(By.xpath("//span[text()= " + errorByCvcCvv + "")).setValue(DataHelper.generateCVC("999"));
 //    }
-
 
 
 }
