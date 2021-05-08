@@ -14,7 +14,8 @@ import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static ru.netology.sql.SqlMethods.getResultSetRowCount;
+import static ru.netology.sql.SqlMethods.getResultSetRowCountForCard;
+import static ru.netology.sql.SqlMethods.getResultSetRowCountForCredit;
 
 public class BuyByCardTest {
     @BeforeAll
@@ -30,24 +31,24 @@ public class BuyByCardTest {
 
     @Test
     void shouldBuyByCreditCard() {
-        int numRows = getResultSetRowCount();
+        int numRows = getResultSetRowCountForCard();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCard();
         buyByCreditPage.successfullyBuyByCard();
-        String status = Objects.requireNonNull(SqlMethods.getStatus()).getStatus();
+        String status = Objects.requireNonNull(SqlMethods.getStatusForCard()).getStatus();
         Assertions.assertEquals("APPROVED", status);
-        Assertions.assertEquals(numRows + 1, getResultSetRowCount());
+        Assertions.assertEquals(numRows + 1, getResultSetRowCountForCard());
     }
 
     @Test
     void shouldCanceled() { // Тест падает из-за дефекта системы TOdo: add num of issue
-        int numRows = getResultSetRowCount();
+        int numRows = getResultSetRowCountForCard();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCard();
         buyByCreditPage.canceledBuyByCard();
-        String status = Objects.requireNonNull(SqlMethods.getStatus()).getStatus();
+        String status = Objects.requireNonNull(SqlMethods.getStatusForCard()).getStatus();
         Assertions.assertEquals("DECLINED", status);
-        Assertions.assertEquals(numRows + 1, getResultSetRowCount());
+        Assertions.assertEquals(numRows + 1, getResultSetRowCountForCard());
     }
 
     @Test
