@@ -22,7 +22,7 @@ public class DataHelper {
         else return "0000 0000 0000 000";
     }
 
-    public static String generateMonthCardExpired() {
+    public static String generateValidMonthCardExpired() {
         ArrayList<String> months = new ArrayList<>(Arrays.
                 asList("04", "05", "06", "07", "08", "09", "10", "11", "12"));
         Collections.shuffle(months);
@@ -31,7 +31,7 @@ public class DataHelper {
 
     public static String generateInvalidMonthCardExpired() {
         ArrayList<String> months = new ArrayList<>(Arrays.
-                asList("14", "00", "13"));
+                asList("14", "13"));
         Collections.shuffle(months);
         return months.get(1);
     }

@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ru.netology.sql.SqlMethods.getResultSetRowCount;
 
-public class MainPageTest {
+public class BuyByCreditCardPageTest {
 
     @BeforeAll
     static void setUp() {
@@ -30,7 +30,7 @@ public class MainPageTest {
     }
 
     @Test
-    void shouldBuyByCredit() {
+    void shouldBuyByCreditCard() {
         int numRows = getResultSetRowCount();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
@@ -41,7 +41,7 @@ public class MainPageTest {
     }
 
     @Test
-    void shouldCanceledBuyByCredit() {
+    void shouldCanceledBuyByCreditCard() { // Тест падает из-за дефекта системы TOdo: add num of issue
         int numRows = getResultSetRowCount();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
@@ -52,58 +52,66 @@ public class MainPageTest {
     }
 
     @Test
-    void shouldErrorByFieldNumberOfCard() {
+    void shouldErrorByFieldNumberOfCard_BuyByCreditCard() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.fillFormErrorByFieldCardNumber();
+        buyByCreditPage.fillFormErrorByFieldCardNumberBuyByCredit();
     }
 
     @Test
-    void shouldErrorByEmptyFieldNumberOfCard() {
+    void shouldErrorByEmptyFieldNumberOfCard_BuyByCreditCard() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.fillFormErrorByEmptyFieldCardNumber();
+        buyByCreditPage.fillFormErrorByEmptyFieldCardNumberBuyByCredit();
         assertTrue(BuyByCreditPage.isAlert("Номер карты", "Неверный формат"));
     }
 
 
     @Test
-    void shouldErrorByFieldOwner() {
+    void shouldErrorByFieldOwner_BuyByCreditCard() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.fillFormErrorByEmptyFieldOwner();
+        buyByCreditPage.ErrorByEmptyFieldOwnerBuyByCredit();
     }
 
-    // Тест на ошибку под полем, по не заполненному полю "Год". Ошибка "Неверный формат"
     @Test
-    void shouldErrorByEmptyFieldYear() {
+    void shouldErrorByEmptyFieldYear_BuyByCreditCard() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.fillFormEmptyFieldYear();
+        buyByCreditPage.fillFormEmptyFieldYearBuyByCredit();
         assertTrue(BuyByCreditPage.isAlert("Год", "Неверный формат"));
     }
 
     @Test
-    void shouldErrorByIncorrectValueFieldYear() {
+    void shouldErrorByIncorrectValueFieldYear_BuyByCreditCard() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.fillFormErrorValueByFieldYear();
+        buyByCreditPage.fillFormErrorValueByFieldYearBuyByCredit();
     }
 
     @Test
-    void shouldErrorByEmptyFieldMonth() {
+    void shouldErrorByEmptyFieldMonth_BuyByCreditCard() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.fillFormByEmptyFieldMonth();
+        buyByCreditPage.fillFormByEmptyFieldMonthBuyByCredit();
         assertTrue(BuyByCreditPage.isAlert("Месяц", "Неверный формат"));
 
     }
 
-
     @Test
-    void shouldErrorByFieldMonth() {
+    void shouldErrorByFieldMonth_BuyByCreditCard() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.fillFormErrorValueByFieldMonth();
+        buyByCreditPage.fillFormErrorValueByFieldMonthBuyByCredit();
     }
+
+    @Test
+    void shouldErrorByEmptyFieldCvvCvv_BuyByCreditCard() {
+        val generalPage = new GeneralPage();
+        val buyByCreditPage = generalPage.buyByCredit();
+        buyByCreditPage.ErrorByEmptyFieldCvcCvvBuyByCredit();
+        assertTrue(BuyByCreditPage.isAlert("CVC/CVV", "Неверный формат"));
+    }
+
+
 }
