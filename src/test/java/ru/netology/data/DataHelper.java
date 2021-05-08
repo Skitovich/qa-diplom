@@ -58,7 +58,7 @@ public class DataHelper {
 
     public static String generateOwnerName() {
         Faker faker = new Faker();
-        return faker.name().firstName();
+        return faker.name().fullName();
     }
 
     public static String enterOwnerManually(String enterOwner) {

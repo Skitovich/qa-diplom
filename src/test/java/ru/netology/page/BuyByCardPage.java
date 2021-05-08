@@ -25,7 +25,7 @@ public class BuyByCardPage {
     private final SelenideElement errorFieldOwner = $(By.xpath("//span[text()='Поле обязательно для заполнения']"));
 
     public BuyByCardPage() {
-        SelenideElement checkBuyByCard = $(By.xpath("h3[text()='Оплата по карте']"));
+        SelenideElement checkBuyByCard = $(By.xpath("//h3[text()='Оплата по карте']"));
         checkBuyByCard.shouldBe(Condition.visible);
     }
 
@@ -122,11 +122,21 @@ public class BuyByCardPage {
         errorFieldOwner.shouldBe(Condition.visible);
     }
 
+    public void errorFieldOwnerBuyByCard (String cardOwner) {
+        cardNumber.setValue(DataHelper.getCardNumber("4441"));
+        yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
+        monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
+        ownerCard.setValue(cardOwner);
+        cvcCvvCard.setValue(DataHelper.generateCVC());
+        buttonContinue.click();
+        errorFieldOwner.shouldBe(Condition.visible);
+    }
+
     public void errorByEmptyFieldCvcCvvBuyByCard() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
-        cvcCvvCard.setValue(DataHelper.generateCVC());
+        ownerCard.setValue(DataHelper.generateOwnerName());
         buttonContinue.click();
         errorFieldOwner.shouldBe(Condition.visible);
     }

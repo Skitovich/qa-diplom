@@ -44,7 +44,7 @@ public class BuyByCreditPage {
     }
 
 
-    public void fillFormSuccessfullyBuyByCredit() {
+    public void successfullyBuyByCredit() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateValidMonthCardExpired());
@@ -54,7 +54,7 @@ public class BuyByCreditPage {
         popupSuccessfully.shouldBe(Condition.visible, Duration.ofSeconds(10));
     }
 
-    public void fillFormCanceledBuyByCredit() {
+    public void canceledBuyByCredit() {
         cardNumber.setValue(DataHelper.getCardNumber("4442"));
         yearCardExpired.setValue(DataHelper.generateValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateValidMonthCardExpired());
@@ -63,7 +63,7 @@ public class BuyByCreditPage {
         buttonContinue.click();
     }
 
-    public void fillFormErrorByFieldCardNumberBuyByCredit() {
+    public void errorByFieldCardNumberBuyByCredit() {
         cardNumber.setValue(DataHelper.getCardNumber("1111"));
         yearCardExpired.setValue(DataHelper.generateValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateValidMonthCardExpired());
@@ -73,7 +73,7 @@ public class BuyByCreditPage {
         errorFieldNumberOfCard.shouldBe(Condition.visible);
     }
 
-    public void fillFormErrorByEmptyFieldCardNumberBuyByCredit() {
+    public void errorByEmptyFieldCardNumberBuyByCredit() {
         yearCardExpired.setValue(DataHelper.generateValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateValidMonthCardExpired());
         ownerCard.setValue(DataHelper.generateOwnerName());
@@ -81,14 +81,14 @@ public class BuyByCreditPage {
         buttonContinue.click();
     }
 
-    public void fillFormByEmptyFieldMonthBuyByCredit() {
+    public void byEmptyFieldMonthBuyByCredit() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateValidYearCardExpired());
         ownerCard.setValue(DataHelper.generateOwnerName());
         cvcCvvCard.setValue(DataHelper.generateCVC());
         buttonContinue.click();
     }
-    public void fillFormErrorValueByFieldMonthBuyByCredit() {
+    public void errorValueByFieldMonthBuyByCredit() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
@@ -98,7 +98,7 @@ public class BuyByCreditPage {
         errorFieldMonth.shouldBe(Condition.visible);
     }
 
-    public void fillFormEmptyFieldYearBuyByCredit() {
+    public void emptyFieldYearBuyByCredit() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
         ownerCard.setValue(DataHelper.generateOwnerName());
@@ -106,7 +106,7 @@ public class BuyByCreditPage {
         buttonContinue.click();
     }
 
-    public void fillFormErrorValueByFieldYearBuyByCredit() {
+    public void errorValueByFieldYearBuyByCredit() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateValidMonthCardExpired());
@@ -116,7 +116,7 @@ public class BuyByCreditPage {
         errorFieldYear.shouldBe(Condition.visible);
     }
 
-    public void ErrorByEmptyFieldOwnerBuyByCredit() {
+    public void errorByEmptyFieldOwnerBuyByCredit() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
@@ -125,7 +125,7 @@ public class BuyByCreditPage {
         errorFieldOwner.shouldBe(Condition.visible);
     }
 
-    public void ErrorFieldOwnerBuyByCredit(String cardOwner) {
+    public void errorFieldOwnerBuyByCredit(String cardOwner) {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
@@ -135,7 +135,7 @@ public class BuyByCreditPage {
         errorFieldOwner.shouldBe(Condition.visible);
     }
 
-    public void ErrorByEmptyFieldCvcCvvBuyByCredit() {
+    public void errorByEmptyFieldCvcCvvBuyByCredit() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());

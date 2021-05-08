@@ -16,8 +16,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ru.netology.sql.SqlMethods.getResultSetRowCount;
 
-public class BuyByCreditCardPageTest {
-
+public class BuyByCardTest {
     @BeforeAll
     static void setUp() {
         Configuration.browser = "firefox";
@@ -33,8 +32,8 @@ public class BuyByCreditCardPageTest {
     void shouldBuyByCreditCard() {
         int numRows = getResultSetRowCount();
         val generalPage = new GeneralPage();
-        val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.successfullyBuyByCredit();
+        val buyByCreditPage = generalPage.buyByCard();
+        buyByCreditPage.successfullyBuyByCard();
         String status = Objects.requireNonNull(SqlMethods.getStatus()).getStatus();
         Assertions.assertEquals("APPROVED", status);
         Assertions.assertEquals(numRows + 1, getResultSetRowCount());
@@ -44,8 +43,8 @@ public class BuyByCreditCardPageTest {
     void shouldCanceled() { // Тест падает из-за дефекта системы TOdo: add num of issue
         int numRows = getResultSetRowCount();
         val generalPage = new GeneralPage();
-        val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.canceledBuyByCredit();
+        val buyByCreditPage = generalPage.buyByCard();
+        buyByCreditPage.canceledBuyByCard();
         String status = Objects.requireNonNull(SqlMethods.getStatus()).getStatus();
         Assertions.assertEquals("DECLINED", status);
         Assertions.assertEquals(numRows + 1, getResultSetRowCount());
@@ -54,15 +53,15 @@ public class BuyByCreditCardPageTest {
     @Test
     void shouldErrorByFieldNumberOfCard() {
         val generalPage = new GeneralPage();
-        val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.errorByFieldCardNumberBuyByCredit();
+        val buyByCreditPage = generalPage.buyByCard();
+        buyByCreditPage.errorByFieldCardNumberBuyByCard();
     }
 
     @Test
     void shouldErrorByEmptyFieldNumberOfCard() {
         val generalPage = new GeneralPage();
-        val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.errorByEmptyFieldCardNumberBuyByCredit();
+        val buyByCreditPage = generalPage.buyByCard();
+        buyByCreditPage.errorByEmptyFieldCardNumberBuyByCard();
         assertTrue(BuyByCreditPage.isAlert("Номер карты", "Неверный формат"));
     }
 
@@ -70,38 +69,38 @@ public class BuyByCreditCardPageTest {
     @Test
     void shouldErrorByFieldOwner() {
         val generalPage = new GeneralPage();
-        val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.errorByEmptyFieldOwnerBuyByCredit();
+        val buyByCreditPage = generalPage.buyByCard();
+        buyByCreditPage.errorByEmptyFieldOwnerBuyByCard();
     }
 
     @Test
     void shouldCheckByEmptyFieldOwner() {
         val generalPage = new GeneralPage();
-        val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.errorFieldOwnerBuyByCredit("");
+        val buyByCreditPage = generalPage.buyByCard();
+        buyByCreditPage.errorFieldOwnerBuyByCard("");
         BuyByCreditPage.isAlert("Владелец","Поле обязательно для заполнения");
     }
 
     @Test
     void shouldErrorByEmptyFieldYear() {
         val generalPage = new GeneralPage();
-        val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.emptyFieldYearBuyByCredit();
+        val buyByCard = generalPage.buyByCard();
+        buyByCard.emptyFieldYearBuyByCard();
         assertTrue(BuyByCreditPage.isAlert("Год", "Неверный формат"));
     }
 
     @Test
     void shouldErrorByIncorrectValueFieldYear() {
         val generalPage = new GeneralPage();
-        val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.errorValueByFieldYearBuyByCredit();
+        val buyByCreditPage = generalPage.buyByCard();
+        buyByCreditPage.errorValueByFieldYearBuyByCard();
     }
 
     @Test
     void shouldErrorByEmptyFieldMonth() {
         val generalPage = new GeneralPage();
-        val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.byEmptyFieldMonthBuyByCredit();
+        val buyByCreditPage = generalPage.buyByCard();
+        buyByCreditPage.byEmptyFieldMonthBuyByCard();
         assertTrue(BuyByCreditPage.isAlert("Месяц", "Неверный формат"));
 
     }
@@ -109,17 +108,16 @@ public class BuyByCreditCardPageTest {
     @Test
     void shouldErrorByFieldMonth() {
         val generalPage = new GeneralPage();
-        val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.errorValueByFieldMonthBuyByCredit();
+        val buyByCreditPage = generalPage.buyByCard();
+        buyByCreditPage.errorValueByFieldMonthBuyByCard();
     }
 
     @Test
     void shouldErrorByEmptyFieldCvvCvv() {
         val generalPage = new GeneralPage();
-        val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.errorByEmptyFieldCvcCvvBuyByCredit();
+        val buyByCreditPage = generalPage.buyByCard();
+        buyByCreditPage.errorByEmptyFieldCvcCvvBuyByCard();
         assertTrue(BuyByCreditPage.isAlert("CVC/CVV", "Неверный формат"));
     }
-
 
 }
