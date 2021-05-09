@@ -41,7 +41,7 @@ public class BuyByCreditCardPageTest {
     }
 
     @Test
-    void shouldCanceled() { // Тест падает из-за дефекта системы TOdo: add num of issue
+    void shouldCanceled() { // Баг репорт составлен - https://github.com/Skitovich/qa-diplom/issues/1
         int numRows = getResultSetRowCountForCredit();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
@@ -68,10 +68,10 @@ public class BuyByCreditCardPageTest {
 
 
     @Test
-    void shouldErrorByFieldOwner() {
+    void shouldErrorByEmptyFieldOwner() {// Баг репорт составлен https://github.com/Skitovich/qa-diplom/issues/2
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.errorByEmptyFieldOwnerBuyByCredit();
+        buyByCreditPage.errorByEmptyFieldOwnerBuyByCredit("00");
     }
 
     @Test
@@ -79,14 +79,14 @@ public class BuyByCreditCardPageTest {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.errorFieldOwnerBuyByCredit("");
-        BuyByCreditPage.isAlert("Владелец","Поле обязательно для заполнения");
+        BuyByCreditPage.isAlert("Владелец", "Поле обязательно для заполнения");
     }
 
     @Test
     void shouldErrorByEmptyFieldYear() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.emptyFieldYearBuyByCredit();
+        buyByCreditPage.emptyFieldYearBuyByCredit("");
         assertTrue(BuyByCreditPage.isAlert("Год", "Неверный формат"));
     }
 
@@ -117,7 +117,7 @@ public class BuyByCreditCardPageTest {
     void shouldErrorByEmptyFieldCvvCvv() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
-        buyByCreditPage.errorByEmptyFieldCvcCvvBuyByCredit();
+        buyByCreditPage.errorByEmptyFieldCvcCvvBuyByCredit("");
         assertTrue(BuyByCreditPage.isAlert("CVC/CVV", "Неверный формат"));
     }
 

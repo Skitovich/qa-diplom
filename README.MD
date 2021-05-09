@@ -11,7 +11,7 @@
 
 вариант 1 (с подключением к MySQL) java -jar aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/app -P:jdbc.user=app -P:jdbc.password=pass
 
-вариант 2 (с подключением к PostgreSQL) java -jar aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/app -P:jdbc.user=app -P:jdbc.password=pass
+вариант 2 (с подключением к PostgreSQL) java -jar aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:5432/app -P:jdbc.user=app -P:jdbc.password=pass
 
 После того как приложение запустится, в следующей соседней вкладке терминала запустить тесты командой:
 

@@ -2,7 +2,6 @@ package ru.netology.page;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.ex.TimeoutException;
 import org.openqa.selenium.By;
 import ru.netology.data.DataHelper;
 
@@ -18,7 +17,6 @@ public class BuyByCardPage {
     private final SelenideElement cardNumber = $(By.cssSelector("[placeholder='0000 0000 0000 0000']"));
     private final SelenideElement buttonContinue = $(By.cssSelector("div:nth-of-type(4) .button__text"));
     private final SelenideElement popupSuccessfully = $(By.xpath("//div[text()='Операция одобрена Банком.']"));
-    private final SelenideElement popupErrorCanceledByBank = $(By.xpath("//div[text()='Ошибка! Банк отказал в проведении операции.']"));
     private final SelenideElement errorFieldNumberOfCard = $(By.xpath("//span[text()='Неверный формат']"));
     private final SelenideElement errorFieldMonth = $(By.xpath("//span[text()='Неверно указан срок действия карты']"));
     private final SelenideElement errorFieldYear = $(By.xpath("//span[text()='Истёк срок действия карты']"));
@@ -30,16 +28,6 @@ public class BuyByCardPage {
     }
 
 
-    public static boolean isAlert(String fieldName, String errorText) {
-        try {
-            $(By.xpath("//span[text() = '" + fieldName + "']//following::span[text() = '" + errorText + "']"))
-                    .shouldBe(Condition.visible, Duration.ofSeconds(10));
-            return true;
-        } catch (TimeoutException e) {
-            return false;
-        }
-    }
-
 
     public void successfullyBuyByCard() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
@@ -48,7 +36,7 @@ public class BuyByCardPage {
         ownerCard.setValue(DataHelper.generateOwnerName());
         cvcCvvCard.setValue(DataHelper.generateCVC());
         buttonContinue.click();
-        popupSuccessfully.shouldBe(Condition.visible, Duration.ofSeconds(10));
+        popupSuccessfully.shouldBe(Condition.visible, Duration.ofSeconds(12));
     }
 
     public void canceledBuyByCard() {
@@ -78,13 +66,15 @@ public class BuyByCardPage {
         buttonContinue.click();
     }
 
-    public void byEmptyFieldMonthBuyByCard() {
+    public void byEmptyFieldMonthBuyByCard(String month) {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
+        monthCardExpired.setValue(month);
         yearCardExpired.setValue(DataHelper.generateValidYearCardExpired());
         ownerCard.setValue(DataHelper.generateOwnerName());
         cvcCvvCard.setValue(DataHelper.generateCVC());
         buttonContinue.click();
     }
+
     public void errorValueByFieldMonthBuyByCard() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateValidYearCardExpired());
@@ -113,16 +103,17 @@ public class BuyByCardPage {
         errorFieldYear.shouldBe(Condition.visible);
     }
 
-    public void errorByEmptyFieldOwnerBuyByCard() {
+    public void errorByEmptyFieldOwnerBuyByCard(String owner) {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
+        ownerCard.setValue(owner);
         cvcCvvCard.setValue(DataHelper.generateCVC());
         buttonContinue.click();
         errorFieldOwner.shouldBe(Condition.visible);
     }
 
-    public void errorFieldOwnerBuyByCard (String cardOwner) {
+    public void errorFieldOwnerBuyByCard(String cardOwner) {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
@@ -140,8 +131,6 @@ public class BuyByCardPage {
         buttonContinue.click();
         errorFieldOwner.shouldBe(Condition.visible);
     }
-
-
 
 
 }

@@ -13,9 +13,8 @@ public class GeneralPage {
     private final SelenideElement buyWithCreditButton = $(byText("Купить в кредит"));
 
 
-
     public BuyByCreditPage buyByCredit() {
-    buyWithCreditButton.click();
+        buyWithCreditButton.click();
         return new BuyByCreditPage();
     }
 

@@ -88,6 +88,7 @@ public class BuyByCreditPage {
         cvcCvvCard.setValue(DataHelper.generateCVC());
         buttonContinue.click();
     }
+
     public void errorValueByFieldMonthBuyByCredit() {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateValidYearCardExpired());
@@ -98,8 +99,9 @@ public class BuyByCreditPage {
         errorFieldMonth.shouldBe(Condition.visible);
     }
 
-    public void emptyFieldYearBuyByCredit() {
+    public void emptyFieldYearBuyByCredit(String yearExpired) {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
+        yearCardExpired.setValue(yearExpired);
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
         ownerCard.setValue(DataHelper.generateOwnerName());
         cvcCvvCard.setValue(DataHelper.generateCVC());
@@ -116,10 +118,11 @@ public class BuyByCreditPage {
         errorFieldYear.shouldBe(Condition.visible);
     }
 
-    public void errorByEmptyFieldOwnerBuyByCredit() {
+    public void errorByEmptyFieldOwnerBuyByCredit(String ownerName) {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
+        ownerCard.setValue(ownerName);
         cvcCvvCard.setValue(DataHelper.generateCVC());
         buttonContinue.click();
         errorFieldOwner.shouldBe(Condition.visible);
@@ -135,11 +138,12 @@ public class BuyByCreditPage {
         errorFieldOwner.shouldBe(Condition.visible);
     }
 
-    public void errorByEmptyFieldCvcCvvBuyByCredit() {
+    public void errorByEmptyFieldCvcCvvBuyByCredit(String cvcCvv) {
         cardNumber.setValue(DataHelper.getCardNumber("4441"));
         yearCardExpired.setValue(DataHelper.generateNotValidYearCardExpired());
         monthCardExpired.setValue(DataHelper.generateInvalidMonthCardExpired());
         ownerCard.setValue(DataHelper.generateOwnerName());
+        cvcCvvCard.setValue(cvcCvv);
         buttonContinue.click();
         errorFieldOwner.shouldBe(Condition.visible);
     }

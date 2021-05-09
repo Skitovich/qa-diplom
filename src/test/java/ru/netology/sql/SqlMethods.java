@@ -10,10 +10,12 @@ import java.sql.*;
 public class SqlMethods {
     public SqlMethods() {
     }
+
     @Value
     public static class StatusInfo {
         String status;
     }
+
     public static StatusInfo getStatusForCredit() {
         val getCode = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1;";
         val runner = new QueryRunner();
@@ -50,19 +52,19 @@ public class SqlMethods {
     public static int getResultSetRowCountForCredit() {
 
         val getRows = "select * from credit_request_entity";
-     try (
+        try (
                 val conn = DriverManager.getConnection(
                         "jdbc:mysql://localhost:3306/app", "app", "pass")
         ) {
-         Statement stmt = conn.createStatement();
-         ResultSet rs = stmt.executeQuery(getRows);
-         rs.last();
-         return  rs.getRow();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(getRows);
+            rs.last();
+            return rs.getRow();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
         return 0;
-     }
+    }
 
     public static int getResultSetRowCountForCard() {
 
@@ -74,7 +76,7 @@ public class SqlMethods {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(getRows);
             rs.last();
-            return  rs.getRow();
+            return rs.getRow();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }

@@ -5,12 +5,12 @@ import com.github.javafaker.Faker;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Locale;
 
 
 public class DataHelper {
     private DataHelper() {
     }
-
 
 
     @org.jetbrains.annotations.NotNull
@@ -57,7 +57,7 @@ public class DataHelper {
     }
 
     public static String generateOwnerName() {
-        Faker faker = new Faker();
+        Faker faker = new Faker(new Locale("ru_RU"));
         return faker.name().fullName();
     }
 
@@ -67,7 +67,7 @@ public class DataHelper {
 
     public static String generateCVC() {
         Faker faker = new Faker();
-        String num = faker.code().imei().substring(0,3);
+        String num = faker.code().imei().substring(0, 3);
         return num;
     }
 
