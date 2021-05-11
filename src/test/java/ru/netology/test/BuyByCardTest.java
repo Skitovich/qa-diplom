@@ -29,7 +29,7 @@ public class BuyByCardTest {
     }
 
     @Test
-    void shouldBuyByCreditCard() {
+    void shouldBuyByCreditCardTest() {
         int numRows = getResultSetRowCountForCard();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCard();
@@ -40,7 +40,7 @@ public class BuyByCardTest {
     }
 
     @Test
-    void shouldCanceled() {
+    void shouldCanceledByBankTest() {
         int numRows = getResultSetRowCountForCard();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCard();
@@ -51,14 +51,14 @@ public class BuyByCardTest {
     }
 
     @Test
-    void shouldErrorByFieldNumberOfCard() {
+    void shouldErrorByFieldNumberOfCardTest() {
         val generalPage = new GeneralPage();
         val buyByCard = generalPage.buyByCard();
         buyByCard.errorByFieldCardNumberBuyByCard();
     }
 
     @Test
-    void shouldErrorByEmptyFieldNumberOfCard() {
+    void shouldErrorByEmptyFieldNumberOfCardTest() {
         val generalPage = new GeneralPage();
         val buyByCard = generalPage.buyByCard();
         buyByCard.errorByEmptyFieldCardNumberBuyByCard();
@@ -67,14 +67,14 @@ public class BuyByCardTest {
 
 
     @Test
-    void shouldErrorByFieldOwner() {
+    void shouldErrorByFieldOwnerTest() {
         val generalPage = new GeneralPage();
         val buyByCard = generalPage.buyByCard();
         buyByCard.errorByEmptyFieldOwnerBuyByCard("");
     }
 
     @Test
-    void shouldCheckByEmptyFieldOwner() {
+    void shouldCheckByEmptyFieldOwnerTest() {
         val generalPage = new GeneralPage();
         val buyByCard = generalPage.buyByCard();
         buyByCard.errorFieldOwnerBuyByCard("");
@@ -82,7 +82,7 @@ public class BuyByCardTest {
     }
 
     @Test
-    void shouldErrorByEmptyFieldYear() {
+    void shouldErrorByEmptyFieldYearTest() {
         val generalPage = new GeneralPage();
         val buyByCard = generalPage.buyByCard();
         buyByCard.emptyFieldYearBuyByCard();
@@ -90,14 +90,14 @@ public class BuyByCardTest {
     }
 
     @Test
-    void shouldErrorByIncorrectValueFieldYear() {
+    void shouldErrorByIncorrectValueFieldYearTest() {
         val generalPage = new GeneralPage();
         val buyByCard = generalPage.buyByCard();
         buyByCard.errorValueByFieldYearBuyByCard();
     }
 
     @Test
-    void shouldErrorByEmptyFieldMonth() {
+    void shouldErrorByEmptyFieldMonthTest() {
         val generalPage = new GeneralPage();
         val buyByCard = generalPage.buyByCard();
         buyByCard.byEmptyFieldMonthBuyByCard("");
@@ -106,14 +106,14 @@ public class BuyByCardTest {
     }
 
     @Test
-    void shouldErrorByFieldMonth() {
+    void shouldErrorByFieldMonthTest() {
         val generalPage = new GeneralPage();
         val buyByCard = generalPage.buyByCard();
         buyByCard.errorValueByFieldMonthBuyByCard();
     }
 
     @Test
-    void shouldErrorByEmptyFieldCvvCvv() {
+    void shouldErrorByEmptyFieldCvvCvvTest() {
         val generalPage = new GeneralPage();
         val buyByCard = generalPage.buyByCard();
         buyByCard.errorByEmptyFieldCvcCvvBuyByCard();

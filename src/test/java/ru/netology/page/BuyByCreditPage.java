@@ -20,7 +20,7 @@ public class BuyByCreditPage {
     private final SelenideElement cardNumber = $(By.cssSelector("[placeholder='0000 0000 0000 0000']"));
     private final SelenideElement buttonContinue = $(By.cssSelector("div:nth-of-type(4) .button__text"));
     private final SelenideElement popupSuccessfully = $(By.xpath("//div[text()='Операция одобрена Банком.']"));
-    private final SelenideElement popupErrorCanceledByBank = $(By.xpath("//div[text()='Ошибка! Банк отказал в проведении операции.']"));
+//    private final SelenideElement popupErrorCanceledByBank = $(By.xpath("//div[text()='Ошибка! Банк отказал в проведении операции.']"));
     private final SelenideElement errorFieldNumberOfCard = $(By.xpath("//span[text()='Неверный формат']"));
     private final SelenideElement errorFieldMonth = $(By.xpath("//span[text()='Неверно указан срок действия карты']"));
     private final SelenideElement errorFieldYear = $(By.xpath("//span[text()='Истёк срок действия карты']"));

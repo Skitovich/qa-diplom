@@ -17,7 +17,7 @@ public class SqlMethods {
     }
 
     public static StatusInfo getStatusForCredit() {
-        val getCode = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1;";
+        val getCode = "SELECT status FROM credit_request_entity ORDER BY created desc LIMIT 1;";
         val runner = new QueryRunner();
 
         try (

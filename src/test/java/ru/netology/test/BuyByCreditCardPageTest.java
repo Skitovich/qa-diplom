@@ -30,7 +30,7 @@ public class BuyByCreditCardPageTest {
     }
 
     @Test
-    void shouldBuyByCreditCard() {
+    void shouldBuyByCreditCardTest() {
         int numRows = getResultSetRowCountForCredit();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
@@ -41,7 +41,7 @@ public class BuyByCreditCardPageTest {
     }
 
     @Test
-    void shouldCanceled() { // Баг репорт составлен - https://github.com/Skitovich/qa-diplom/issues/1
+    void shouldCanceledByBankTest() { // Баг репорт составлен - https://github.com/Skitovich/qa-diplom/issues/1
         int numRows = getResultSetRowCountForCredit();
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
@@ -52,14 +52,14 @@ public class BuyByCreditCardPageTest {
     }
 
     @Test
-    void shouldErrorByFieldNumberOfCard() {
+    void shouldErrorByFieldNumberOfCardTest() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.errorByFieldCardNumberBuyByCredit();
     }
 
     @Test
-    void shouldErrorByEmptyFieldNumberOfCard() {
+    void shouldErrorByEmptyFieldNumberOfCardTest() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.errorByEmptyFieldCardNumberBuyByCredit();
@@ -68,14 +68,14 @@ public class BuyByCreditCardPageTest {
 
 
     @Test
-    void shouldErrorByEmptyFieldOwner() {// Баг репорт составлен https://github.com/Skitovich/qa-diplom/issues/2
+    void shouldErrorByFieldOwnerTest() {// Баг репорт составлен https://github.com/Skitovich/qa-diplom/issues/2
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.errorByEmptyFieldOwnerBuyByCredit("00");
     }
 
     @Test
-    void shouldCheckByEmptyFieldOwner() {
+    void shouldCheckByEmptyFieldOwnerTest() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.errorFieldOwnerBuyByCredit("");
@@ -83,7 +83,7 @@ public class BuyByCreditCardPageTest {
     }
 
     @Test
-    void shouldErrorByEmptyFieldYear() {
+    void shouldErrorByEmptyFieldYearTest() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.emptyFieldYearBuyByCredit("");
@@ -91,14 +91,14 @@ public class BuyByCreditCardPageTest {
     }
 
     @Test
-    void shouldErrorByIncorrectValueFieldYear() {
+    void shouldErrorByIncorrectValueFieldYearTest() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.errorValueByFieldYearBuyByCredit();
     }
 
     @Test
-    void shouldErrorByEmptyFieldMonth() {
+    void shouldErrorByEmptyFieldMonthTest() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.byEmptyFieldMonthBuyByCredit();
@@ -107,14 +107,14 @@ public class BuyByCreditCardPageTest {
     }
 
     @Test
-    void shouldErrorByFieldMonth() {
+    void shouldErrorByFieldMonthTest() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.errorValueByFieldMonthBuyByCredit();
     }
 
     @Test
-    void shouldErrorByEmptyFieldCvvCvv() {
+    void shouldErrorByEmptyFieldCvvCvvTest() {
         val generalPage = new GeneralPage();
         val buyByCreditPage = generalPage.buyByCredit();
         buyByCreditPage.errorByEmptyFieldCvcCvvBuyByCredit("");
