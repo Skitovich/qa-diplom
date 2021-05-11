@@ -18,3 +18,5 @@
 вариант 1 (с подключением к MySQL) gradlew test -Ddatabase.url=jdbc:mysql://localhost:3306/app -Ddatabase.name=app -Ddatabase.password=pass
 
 вариант 2 (с подключением к PostgreSQL) gradlew test -Ddatabase.url=jdbc:postgresql://localhost:5432/postgres -Ddatabase.name=postgres -Ddatabase.password=mysecretpassword
+
+Отчет о проведенном тестировании - https://github.com/Skitovich/qa-diplom/blob/master/Report.MD
