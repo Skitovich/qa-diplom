@@ -11,12 +11,10 @@
 
 вариант 1 (с подключением к MySQL) java -jar aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/app -P:jdbc.user=app -P:jdbc.password=pass
 
-вариант 2 (с подключением к PostgreSQL) java -jar aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:5432/postgres -P:jdbc.user=postgres -P:jdbc.password=mysecretpassword
+вариант 2 (с подключением к PostgreSQL) java -jar aqa-shop.jar -P:jdbc.url=jdbc:postgresql://localhost:5432/postgres -P:jdbc.user=postgres -P:jdbc.password=mysecretpassword
 
 После того как приложение запустится, в следующей соседней вкладке терминала запустить тесты командой:
 
 вариант 1 (с подключением к MySQL) gradlew test -Ddatabase.url=jdbc:mysql://localhost:3306/app -Ddatabase.name=app -Ddatabase.password=pass
 
 вариант 2 (с подключением к PostgreSQL) gradlew test -Ddatabase.url=jdbc:postgresql://localhost:5432/postgres -Ddatabase.name=postgres -Ddatabase.password=mysecretpassword
-
-Отчет о проведенном тестировании - https://github.com/Skitovich/qa-diplom/blob/master/Report.MD
